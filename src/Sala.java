@@ -14,4 +14,9 @@ public class Sala {
     public String getNombre() {
         return nombre;
     }
+
+    @Override
+    public String toString() {
+        return "Sala #" + id + ": " + nombre;
+    }
 }

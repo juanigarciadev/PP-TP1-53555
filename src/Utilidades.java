@@ -9,23 +9,29 @@ public class Utilidades {
         }
     }
 
-    public static void poblarSistema(List<Estudiante> estudiantes, List<EventoUniversitario> eventos) {
+    public static void poblarSistema(List<Estudiante> estudiantes, List<EventoUniversitario> eventos, List<Sala> salas) {
         // Estudiantes de prueba
         estudiantes.add(new Estudiante("1001", "Ana Pérez"));
         estudiantes.add(new Estudiante("1002", "Juan López"));
         estudiantes.add(new Estudiante("1003", "María Gómez"));
 
+        // Salas de prueba
+        Sala sala1 = new Sala(1, "Auditorio Principal");
+        Sala sala2 = new Sala(2, "Sala 3B");
+        salas.add(sala1);
+        salas.add(sala2);
+
         // Evento 1: gratuito, con dos actividades
         EventoUniversitario evento1 = new EventoUniversitario(
                 UUID.randomUUID().toString(), "Hackathon UTN", 0, true);
-        evento1.asignarSala(new Sala(1, "Auditorio Principal"));
+        evento1.asignarSala(sala1);
         evento1.crearActividad(1, "Desarrollo de Prototipo", 20);
         evento1.crearActividad(2, "Charla de Cierre", 50);
 
         // Evento 2: pago, con una actividad
         EventoUniversitario evento2 = new EventoUniversitario(
                 UUID.randomUUID().toString(), "Jornada de Innovación", 500.0, false);
-        evento2.asignarSala(new Sala(2, "Sala 3B"));
+        evento2.asignarSala(sala2);
         evento2.crearActividad(3, "Taller de Robótica", 15);
 
         eventos.add(evento1);

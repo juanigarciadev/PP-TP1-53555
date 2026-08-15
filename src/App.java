@@ -10,7 +10,8 @@ public class App {
         // Poblado de datos de prueba
         List<Estudiante> estudiantes = new ArrayList<>();
         List<EventoUniversitario> eventos = new ArrayList<>();
-        Utilidades.poblarSistema(estudiantes, eventos);
+        List<Sala> salas = new ArrayList<>();
+        Utilidades.poblarSistema(estudiantes, eventos, salas);
 
         do {
             Utilidades.limpiarConsola();
@@ -29,14 +30,18 @@ public class App {
             switch (opcion) {
                 case "1":
                     GestionEventos moduloEventos = new GestionEventos();
-                    moduloEventos.iniciar(teclado, eventos);
+                    moduloEventos.iniciar(teclado, eventos, salas);
                     break;
                 case "2":
-                    GestionEstudiantes moduloEstudianes = new GestionEstudiantes();
-                    moduloEstudianes.iniciar(teclado, estudiantes);
+                    GestionEstudiantes moduloEstudiantes = new GestionEstudiantes();
+                    moduloEstudiantes.iniciar(teclado, estudiantes);
                     break;
-                case "3", "4":
+                case "3":
                     System.out.println("¡Próximamente!");
+                    break;
+                case "4":
+                    GestionSalas moduloSalas = new GestionSalas();
+                    moduloSalas.iniciar(teclado, salas);
                     break;
                 case "5":
                     System.out.println("Saliendo del sistema principal...");

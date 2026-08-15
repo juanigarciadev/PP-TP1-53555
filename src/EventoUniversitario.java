@@ -20,8 +20,10 @@ public class EventoUniversitario {
         this.actividades = new ArrayList<>();
     }
 
-    public EventoUniversitario(EventoUniversitario otroEvento) {
-        this(otroEvento.Id + "-COPIA", otroEvento.titulo, otroEvento.costoBase, otroEvento.gratuito);
+    public EventoUniversitario(EventoUniversitario copiaEvento) {
+        this(copiaEvento.Id + "-COPIA", copiaEvento.titulo, copiaEvento.costoBase, copiaEvento.gratuito);
+        this.actividades = new ArrayList<>(copiaEvento.actividades);
+        this.sala = copiaEvento.sala;
     }
 
     public static int getContadorEventos() {
@@ -53,7 +55,8 @@ public class EventoUniversitario {
         return "Evento [ID: " + Id +
                 ", Título: " + titulo +
                 ", Costo: " + costoBase +
-                ", Gratuito: " + (gratuito ? "Si" : "No") + "]";
+                ", Gratuito: " + (gratuito ? "Si" : "No") +
+                ", Sala: " + (sala != null ? sala.getNombre() : "Sin asignar") + "]";
     }
 
 }

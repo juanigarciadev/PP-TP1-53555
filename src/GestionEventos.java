@@ -4,7 +4,7 @@ import java.util.UUID;
 
 public class GestionEventos {
 
-    public void iniciar(Scanner teclado, List<EventoUniversitario> eventos) {
+    public void iniciar(Scanner teclado, List<EventoUniversitario> eventos, List<Sala> salas) {
         String opcion;
 
         do {
@@ -18,7 +18,7 @@ public class GestionEventos {
 
             switch (opcion) {
                 case "1":
-                    crearEvento(teclado, eventos);
+                    crearEvento(teclado, eventos, salas);
                     break;
                 case "2":
                     mostrarEventos(eventos);
@@ -38,7 +38,7 @@ public class GestionEventos {
         } while (!opcion.equals("3"));
     }
 
-    private void crearEvento(Scanner teclado, List<EventoUniversitario> eventos) {
+    private void crearEvento(Scanner teclado, List<EventoUniversitario> eventos, List<Sala> salas) {
         System.out.println("\n--- Creación de evento ---");
 
         String id = UUID.randomUUID().toString();
@@ -91,6 +91,8 @@ public class GestionEventos {
 
         } while (respuestaCrearMasAct.equalsIgnoreCase("S"));
 
+        asignarSalaAEvento(teclado, evento, salas);
+
         eventos.add(evento);
 
         System.out.println("======================");
@@ -114,6 +116,8 @@ public class GestionEventos {
         if (eventos.isEmpty()) {
             System.out.println("No hay eventos registrados.");
             return;
+        } else {
+            System.out.println("Cantidad de eventos creados: " + EventoUniversitario.getContadorEventos());
         }
 
         for (EventoUniversitario evento : eventos) {
@@ -121,5 +125,42 @@ public class GestionEventos {
             evento.mostrarActividades();
             System.out.println("----------------------");
         }
+    }
+
+    private void asignarSalaAEvento(Scanner teclado, EventoUniversitario evento, List<Sala> salas) {
+
+        if (salas.isEmpty()) {
+            System.out.println("No hay salas registradas. El evento quedará sin sala asignada.");
+            return;
+        }
+
+        System.out.println("======================");
+        System.out.println("Salas disponibles: ");
+        for (Sala sala : salas) {
+            System.out.println(sala);
+        }
+
+        Sala salaSeleccionada = null;
+        int idSala;
+
+        do {
+            System.out.println("Ingrese el ID de la sala a asignar: ");
+            idSala = teclado.nextInt();
+            teclado.nextLine();
+
+            for (Sala sala : salas) {
+                if(sala.getId() == idSala) {
+                    salaSeleccionada = sala;
+                    break;
+                }
+            }
+
+            if (salaSeleccionada == null) {
+                System.out.println("ID de sala inválido. Intente nuevamente.");
+            }
+        } while (salaSeleccionada == null);
+
+        evento.asignarSala(salaSeleccionada);
+        System.out.println("Sala asignada: " + salaSeleccionada);
     }
 }
