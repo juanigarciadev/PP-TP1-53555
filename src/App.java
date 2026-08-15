@@ -37,7 +37,8 @@ public class App {
                     moduloEstudiantes.iniciar(teclado, estudiantes);
                     break;
                 case "3":
-                    System.out.println("¡Próximamente!");
+                    GestionInscripcion moduloInscripciones = new GestionInscripcion();
+                    moduloInscripciones.iniciar(teclado, eventos, estudiantes);
                     break;
                 case "4":
                     GestionSalas moduloSalas = new GestionSalas();

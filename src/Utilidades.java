@@ -43,4 +43,17 @@ public class Utilidades {
         evento1.getActividades().get(1).inscribir(estudiantes.get(2)); // María -> Charla de Cierre
         evento2.getActividades().get(0).inscribir(estudiantes.get(0)); // Ana también en Taller de Robótica
     }
+
+    public static void mostrarEstudiantes(List<Estudiante> estudiantes) {
+        System.out.println("\n--- Lista de estudiantes ---");
+
+        if (estudiantes.isEmpty()) {
+            System.out.println("No hay estudiantes registrados.");
+            return;
+        }
+
+        for (Estudiante estudiante : estudiantes) {
+            System.out.println(estudiante);
+        }
+    }
 }

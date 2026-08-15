@@ -20,7 +20,7 @@ public class GestionEstudiantes {
                     crearEstudiante(teclado, estudiantes);
                     break;
                 case "2":
-                    mostrarEstudiantes(estudiantes);
+                    Utilidades.mostrarEstudiantes(estudiantes);
                     break;
                 case "3":
                     System.out.println("Volviendo al menú principal...");
@@ -59,18 +59,5 @@ public class GestionEstudiantes {
         System.out.println("¡Estudiante creado con éxito!");
         System.out.println(estudiante);
         System.out.println("======================");
-    }
-
-    private void mostrarEstudiantes(List<Estudiante> estudiantes) {
-        System.out.println("\n--- Lista de estudiantes ---");
-
-        if (estudiantes.isEmpty()) {
-            System.out.println("No hay estudiantes registrados.");
-            return;
-        }
-
-        for (Estudiante estudiante : estudiantes) {
-            System.out.println(estudiante);
-        }
     }
 }
