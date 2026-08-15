@@ -43,6 +43,11 @@ public class EventoUniversitario {
         }
     }
 
+    // Usado solamente para poblar
+    public List<Actividad> getActividades() {
+        return actividades;
+    }
+
     @Override
     public String toString() {
         return "Evento [ID: " + Id +

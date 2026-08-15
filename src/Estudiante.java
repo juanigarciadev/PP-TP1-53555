@@ -6,4 +6,17 @@ public class Estudiante {
         this.legajo = legajo;
         this.nombre = nombre;
     }
+
+    public String getLegajo() {
+        return legajo;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    @Override
+    public String toString() {
+        return "Legajo: " + legajo + " | Nombre: " + nombre;
+    }
 }

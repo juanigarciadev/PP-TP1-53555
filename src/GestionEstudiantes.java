@@ -1,35 +1,76 @@
+import java.util.List;
 import java.util.Scanner;
 
 public class GestionEstudiantes {
-    String respuestaCrearMas;
 
-    public void iniciar(Scanner teclado) {
+    public void iniciar(Scanner teclado, List<Estudiante> estudiantes) {
+        String opcion;
+
         do {
             Utilidades.limpiarConsola();
-            System.out.println("\n--- Módulo: Creación de estudiantes ---");
+            System.out.println("\n--- Módulo: Estudiantes ---");
+            System.out.println("1. Crear estudiante");
+            System.out.println("2. Mostrar estudiantes");
+            System.out.println("3. Volver al menú principal");
+            System.out.print("Seleccione una opción: ");
+            opcion = teclado.nextLine();
 
-            String legajo;
-            System.out.println("Ingrese el legajo del estudiante:");
-            legajo = teclado.nextLine();
+            switch (opcion) {
+                case "1":
+                    crearEstudiante(teclado, estudiantes);
+                    break;
+                case "2":
+                    mostrarEstudiantes(estudiantes);
+                    break;
+                case "3":
+                    System.out.println("Volviendo al menú principal...");
+                    break;
+                default:
+                    System.out.println("Opción no válida.");
+            }
 
-            String nombre;
-            System.out.println("Ingrese el nombre del estudiante: ");
-            do {
-                nombre = teclado.nextLine();
-            } while (legajo.isEmpty());
+            if (!opcion.equals("3")) {
+                System.out.println("\nPresione Enter para continuar...");
+                teclado.nextLine();
+            }
 
-            Estudiante estudiante = new Estudiante(legajo, nombre);
-
-            System.out.println("======================");
-            System.out.println("¡Estudiante creado con éxito!");
-            System.out.println("Legajo: " + legajo);
-            System.out.println("Nombre: " + nombre);
-            System.out.println("======================");
-
-            System.out.println("¿Desea crear más estudiantes? S/N");
-            respuestaCrearMas = teclado.nextLine();
-        } while (respuestaCrearMas.equalsIgnoreCase("S"));
-
+        } while (!opcion.equals("3"));
     }
 
+    private void crearEstudiante(Scanner teclado, List<Estudiante> estudiantes) {
+        System.out.println("\n--- Creación de estudiante ---");
+
+        String legajo;
+        System.out.println("Ingrese el legajo del estudiante:");
+        do {
+            legajo = teclado.nextLine();
+        } while (legajo.isEmpty());
+
+        String nombre;
+        System.out.println("Ingrese el nombre del estudiante: ");
+        do {
+            nombre = teclado.nextLine();
+        } while (nombre.isEmpty());
+
+        Estudiante estudiante = new Estudiante(legajo, nombre);
+        estudiantes.add(estudiante);
+
+        System.out.println("======================");
+        System.out.println("¡Estudiante creado con éxito!");
+        System.out.println(estudiante);
+        System.out.println("======================");
+    }
+
+    private void mostrarEstudiantes(List<Estudiante> estudiantes) {
+        System.out.println("\n--- Lista de estudiantes ---");
+
+        if (estudiantes.isEmpty()) {
+            System.out.println("No hay estudiantes registrados.");
+            return;
+        }
+
+        for (Estudiante estudiante : estudiantes) {
+            System.out.println(estudiante);
+        }
+    }
 }

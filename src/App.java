@@ -1,9 +1,16 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
         String opcion = "";
+
+        // Poblado de datos de prueba
+        List<Estudiante> estudiantes = new ArrayList<>();
+        List<EventoUniversitario> eventos = new ArrayList<>();
+        Utilidades.poblarSistema(estudiantes, eventos);
 
         do {
             Utilidades.limpiarConsola();
@@ -22,11 +29,11 @@ public class App {
             switch (opcion) {
                 case "1":
                     GestionEventos moduloEventos = new GestionEventos();
-                    moduloEventos.iniciar(teclado);
+                    moduloEventos.iniciar(teclado, eventos);
                     break;
                 case "2":
                     GestionEstudiantes moduloEstudianes = new GestionEstudiantes();
-                    moduloEstudianes.iniciar(teclado);
+                    moduloEstudianes.iniciar(teclado, estudiantes);
                     break;
                 case "3", "4":
                     System.out.println("¡Próximamente!");
