@@ -1,54 +1,44 @@
 import java.util.Scanner;
-import java.util.UUID;
-
 
 public class App {
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
-        String respuestaCrearMas;
-
-        System.out.println("Sistema de creación de eventos");
-        System.out.println("======================");
+        String opcion = "";
 
         do {
-            UUID uuid = UUID.randomUUID();
-            String Id = uuid.toString();
+            Utilidades.limpiarConsola();
+            System.out.println("======================================");
+            System.out.println("          SELECTOR DE MÓDULOS          ");
+            System.out.println("======================================");
+            System.out.println("1. Gestión de eventos universitarios");
+            System.out.println("2. Gestión de estudiantes");
+            System.out.println("3. Inscripción a eventos");
+            System.out.println("4. Gestión de salas");
+            System.out.println("5. Salir del sistema");
+            System.out.print("Seleccione una opción: ");
 
+            opcion = teclado.nextLine();
 
-            System.out.println("Ingrese el nombre del evento: ");
-            String titulo = teclado.nextLine();
+            switch (opcion) {
+                case "1":
+                    GestionEventos moduloEventos = new GestionEventos();
+                    moduloEventos.iniciar(teclado);
+                    break;
+                case "2":
+                    GestionEstudiantes moduloEstudianes = new GestionEstudiantes();
+                    moduloEstudianes.iniciar(teclado);
+                    break;
+                case "3", "4":
+                    System.out.println("¡Próximamente!");
+                    break;
+                case "5":
+                    System.out.println("Saliendo del sistema principal...");
+                    break;
+                default:
+                    System.out.println("Opción no válida. Intente de nuevo.");
+            }
+        } while (!opcion.equals("5"));
 
-            boolean gratuito = false;
-            double costoBase;
-
-            System.out.println("Ingrese el costo base: ");
-            // Usamos nextDouble() para leer el número decimal
-            costoBase = teclado.nextDouble();
-            teclado.nextLine(); // Limpieza del salto de línea residual que introduce teclado.nextDouble()
-            if (costoBase == 0) {
-                gratuito = true;
-                System.out.println("Evento configurado como gratuito (costo base es 0)");
-            };
-
-
-            EventoUniversitario evento = new EventoUniversitario(Id, titulo, costoBase, gratuito);
-
-
-            System.out.println("======================");
-            System.out.println("Evento creado con éxito:");
-            System.out.println(evento);
-
-            System.out.println("Creando copia del evento...");
-            EventoUniversitario copiaEvento = new EventoUniversitario(evento);
-            System.out.println("Datos de la copia:");
-            System.out.println(copiaEvento);
-
-            System.out.println("======================");
-            System.out.println("Cantidad de eventos: " + EventoUniversitario.getContadorEventos());
-
-            System.out.println("¿Desea crear más eventos? S/N");
-            respuestaCrearMas = teclado.nextLine();
-
-        } while (respuestaCrearMas.equalsIgnoreCase("S"));
+        teclado.close();
     }
 }
