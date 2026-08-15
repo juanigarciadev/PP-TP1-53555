@@ -1,5 +1,5 @@
 public class EventoUniversitario {
-    private String Id;
+    private final String Id;
     private String titulo;
     private double costoBase;
     private boolean gratuito;
