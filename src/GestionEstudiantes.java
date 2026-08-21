@@ -8,7 +8,7 @@ public class GestionEstudiantes {
 
         do {
             Utilidades.limpiarConsola();
-            System.out.println("\n--- Módulo: Estudiantes ---");
+            System.out.println(Utilidades.BLUE + "\n--- Módulo: Estudiantes ---" + Utilidades.RESET);
             System.out.println("1. Crear estudiante");
             System.out.println("2. Mostrar estudiantes");
             System.out.println("3. Volver al menú principal");
@@ -38,7 +38,7 @@ public class GestionEstudiantes {
     }
 
     private void crearEstudiante(Scanner teclado, List<Estudiante> estudiantes) {
-        System.out.println("\n--- Creación de estudiante ---");
+        System.out.println(Utilidades.BLUE + "\n--- Creación de estudiante ---" + Utilidades.RESET);
 
         String legajo;
         System.out.println("Ingrese el legajo del estudiante:");
@@ -55,9 +55,9 @@ public class GestionEstudiantes {
         Estudiante estudiante = new Estudiante(legajo, nombre);
         estudiantes.add(estudiante);
 
-        System.out.println("======================");
+        System.out.println(Utilidades.GREEN + "======================");
         System.out.println("¡Estudiante creado con éxito!");
         System.out.println(estudiante);
-        System.out.println("======================");
+        System.out.println("======================" + Utilidades.RESET);
     }
 }

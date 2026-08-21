@@ -9,7 +9,7 @@ public class GestionEventos {
 
         do {
             Utilidades.limpiarConsola();
-            System.out.println("\n--- Módulo: Eventos Universitarios ---");
+            System.out.println( Utilidades.BLUE + "\n--- Módulo: Eventos Universitarios ---" + Utilidades.RESET);
             System.out.println("1. Crear evento");
             System.out.println("2. Mostrar eventos");
             System.out.println("3. Volver al menú principal");
@@ -39,7 +39,7 @@ public class GestionEventos {
     }
 
     private void crearEvento(Scanner teclado, List<EventoUniversitario> eventos, List<Sala> salas) {
-        System.out.println("\n--- Creación de evento ---");
+        System.out.println(Utilidades.BLUE + "\n--- Creación de evento ---" + Utilidades.RESET);
 
         String id = UUID.randomUUID().toString();
 
@@ -60,14 +60,14 @@ public class GestionEventos {
 
         if (costoBase == 0) {
             gratuito = true;
-            System.out.println("Evento configurado como gratuito (costo base es 0)");
+            System.out.println(Utilidades.YELLOW + "Evento configurado como gratuito (costo base es 0)" + Utilidades.RESET);
         }
 
         EventoUniversitario evento = new EventoUniversitario(id, titulo, costoBase, gratuito);
 
         String respuestaCrearMasAct;
-        System.out.println("======================");
-        System.out.println("Cree al menos una actividad para este evento.");
+        System.out.println();
+        System.out.println(Utilidades.BLUE + "Cree al menos una actividad para este evento." + Utilidades.RESET);
 
         do {
             int idActividad;
@@ -86,7 +86,8 @@ public class GestionEventos {
 
             evento.crearActividad(idActividad, tituloActividad, cupoMaximoActividad);
 
-            System.out.println("¿Desea crear más actividades? S/N");
+            System.out.println();
+            System.out.println(Utilidades.YELLOW + "¿Desea crear más actividades? S/N" + Utilidades.RESET);
             respuestaCrearMasAct = teclado.nextLine();
 
         } while (respuestaCrearMasAct.equalsIgnoreCase("S"));
@@ -95,23 +96,24 @@ public class GestionEventos {
 
         eventos.add(evento);
 
-        System.out.println("======================");
+        System.out.println(Utilidades.GREEN + "======================");
         System.out.println("Evento creado con éxito:");
         System.out.println(evento);
         System.out.println("Actividades: ");
         evento.mostrarActividades();
+        System.out.println(Utilidades.RESET);
 
-        System.out.println("Creando copia del evento...");
+        System.out.println(Utilidades.YELLOW + "Creando copia del evento...");
         EventoUniversitario copiaEvento = new EventoUniversitario(evento);
         System.out.println("Datos de la copia:");
         System.out.println(copiaEvento);
 
-        System.out.println("======================");
+        System.out.println("======================" + Utilidades.RESET);
         System.out.println("Cantidad de eventos: " + EventoUniversitario.getContadorEventos());
     }
 
     private void mostrarEventos(List<EventoUniversitario> eventos) {
-        System.out.println("\n--- Lista de eventos ---");
+        System.out.println(Utilidades.BLUE + "\n--- Lista de eventos ---" + Utilidades.RESET);
 
         if (eventos.isEmpty()) {
             System.out.println("No hay eventos registrados.");
@@ -123,21 +125,21 @@ public class GestionEventos {
         for (EventoUniversitario evento : eventos) {
             System.out.println(evento);
             evento.mostrarActividades();
-            System.out.println("----------------------");
+            System.out.println(Utilidades.BLUE + "----------------------" + Utilidades.RESET);
         }
     }
 
     private void asignarSalaAEvento(Scanner teclado, EventoUniversitario evento, List<Sala> salas) {
 
         if (salas.isEmpty()) {
-            System.out.println("No hay salas registradas. El evento quedará sin sala asignada.");
+            System.out.println(Utilidades.RED + "No hay salas registradas. El evento quedará sin sala asignada." + Utilidades.RESET);
             return;
         }
 
-        System.out.println("======================");
-        System.out.println("Salas disponibles: ");
+        System.out.println();
+        System.out.println("Asigne una sala: " + Utilidades.RESET);
         for (Sala sala : salas) {
-            System.out.println(sala);
+            System.out.println("- " + sala);
         }
 
         Sala salaSeleccionada = null;
@@ -161,6 +163,6 @@ public class GestionEventos {
         } while (salaSeleccionada == null);
 
         evento.asignarSala(salaSeleccionada);
-        System.out.println("Sala asignada: " + salaSeleccionada);
+        System.out.println(Utilidades.GREEN + "Sala asignada: " + salaSeleccionada + Utilidades.RESET);
     }
 }

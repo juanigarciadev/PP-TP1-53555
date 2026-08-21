@@ -8,7 +8,7 @@ public class GestionSalas {
 
         do {
             Utilidades.limpiarConsola();
-            System.out.println("\n--- Módulo: Salas ---");
+            System.out.println(Utilidades.BLUE + "\n--- Módulo: Salas ---" + Utilidades.RESET);
             System.out.println("1. Crear sala");
             System.out.println("2. Mostrar salas");
             System.out.println("3. Volver al menú principal");
@@ -38,7 +38,7 @@ public class GestionSalas {
     }
 
     private void crearSala(Scanner teclado, List<Sala> salas) {
-        System.out.println("\n--- Creación de sala ---");
+        System.out.println(Utilidades.BLUE + "\n--- Creación de sala ---" + Utilidades.RESET);
 
         int id;
         System.out.println("Ingrese el ID de la sala:");
@@ -56,14 +56,14 @@ public class GestionSalas {
         Sala sala = new Sala(id, nombre);
         salas.add(sala);
 
-        System.out.println("======================");
+        System.out.println(Utilidades.GREEN + "======================");
         System.out.println("¡Sala creada con éxito!");
         System.out.println(sala);
-        System.out.println("======================");
+        System.out.println("======================" + Utilidades.RESET);
     }
 
     public void mostrarSalas(List<Sala> salas) {
-        System.out.println("\n--- Lista de salas ---");
+        System.out.println(Utilidades.BLUE + "\n--- Lista de salas ---" + Utilidades.RESET);
 
         if (salas.isEmpty()) {
             System.out.println("No hay salas creadas.");

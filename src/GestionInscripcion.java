@@ -17,7 +17,7 @@ public class GestionInscripcion {
 
         do {
             Utilidades.limpiarConsola();
-            System.out.println("\n--- Módulo: Inscripción de Estudiantes ---");
+            System.out.println(Utilidades.BLUE + "\n--- Módulo: Inscripción de Estudiantes ---" + Utilidades.RESET);
 
             System.out.println("Eventos disponibles:");
             for (int i = 0; i < eventos.size(); i++) {
@@ -73,10 +73,12 @@ public class GestionInscripcion {
             } while (estudianteAInscribir == null);
 
             actividad.inscribir(estudianteAInscribir);
-            System.out.println("======================");
+            System.out.println(Utilidades.GREEN + "======================");
             System.out.println(estudianteAInscribir.getNombre() + " inscripto con éxito en '" + actividad + "'.");
+            System.out.println("======================" + Utilidades.RESET);
 
-            System.out.println("¿Desea inscribir más estudiantes? S/N");
+            System.out.println();
+            System.out.println(Utilidades.YELLOW + "¿Desea inscribir más estudiantes? S/N" + Utilidades.RESET);
             respuestaInscribirMas = teclado.nextLine();
 
         } while (respuestaInscribirMas.equalsIgnoreCase("S"));
