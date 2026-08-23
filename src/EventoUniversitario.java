@@ -22,6 +22,7 @@ public class EventoUniversitario {
 
     public EventoUniversitario(EventoUniversitario copiaEvento) {
         this(copiaEvento.Id + "-COPIA", copiaEvento.titulo, copiaEvento.costoBase, copiaEvento.gratuito);
+        cantidadEventos--; // una copia no es un evento nuevo, no debe sumar al contador
         this.actividades = new ArrayList<>(copiaEvento.actividades);
         this.sala = copiaEvento.sala;
     }
@@ -31,21 +32,33 @@ public class EventoUniversitario {
     }
 
     public double calcularCostoEstimado() {
-        return gratuito ? 0 : costoBase;
+        if (gratuito) return 0;
+        double totalActividades = 0;
+        for (Actividad a : actividades) {
+            totalActividades += a.calcularCostoMateriales();
+        }
+        return (costoBase + totalActividades) * 1.21;
     }
 
     public void asignarSala(Sala sala) {
         this.sala = sala;
     }
 
-    public void crearActividad(int id, String titulo, int cupo) {
-        Actividad actividad = new Actividad(id, titulo, cupo);
-        this.actividades.add(actividad);
+    public void crearActividad(String titulo, int cupo, String tipo, String disertanteOrNull, boolean requiereNotebook) {
+        Actividad actividad;
+        if (tipo.equalsIgnoreCase("Charla")) {
+            actividad = new Charla(titulo, cupo, disertanteOrNull);
+        } else if (tipo.equalsIgnoreCase("Taller")) {
+            actividad = new Taller(titulo, cupo, requiereNotebook);
+        } else {
+            throw new IllegalArgumentException("Tipo de actividad desconocido: " + tipo);
+        }
+        actividades.add(actividad);
     }
 
     public void mostrarActividades() {
         for (Actividad actividad: actividades) {
-            System.out.println(actividad);
+            actividad.mostrarIdentificacion();
         }
     }
 

@@ -70,11 +70,6 @@ public class GestionEventos {
         System.out.println(Utilidades.BLUE + "Cree al menos una actividad para este evento." + Utilidades.RESET);
 
         do {
-            int idActividad;
-            System.out.println("ID de la actividad: ");
-            idActividad = teclado.nextInt();
-            teclado.nextLine();
-
             String tituloActividad;
             System.out.println("Titulo de la actividad: ");
             tituloActividad = teclado.nextLine();
@@ -84,7 +79,24 @@ public class GestionEventos {
             cupoMaximoActividad = teclado.nextInt();
             teclado.nextLine();
 
-            evento.crearActividad(idActividad, tituloActividad, cupoMaximoActividad);
+            String tipoActividad;
+            do {
+                System.out.println("Tipo de actividad (Charla/Taller): ");
+                tipoActividad = teclado.nextLine();
+            } while (!tipoActividad.equalsIgnoreCase("Charla") && !tipoActividad.equalsIgnoreCase("Taller"));
+
+            String disertante = null;
+            boolean requiereNotebook = false;
+
+            if (tipoActividad.equalsIgnoreCase("Charla")) {
+                System.out.println("Nombre del disertante: ");
+                disertante = teclado.nextLine();
+            } else {
+                System.out.println("¿Requiere notebook? S/N");
+                requiereNotebook = teclado.nextLine().equalsIgnoreCase("S");
+            }
+
+            evento.crearActividad(tituloActividad, cupoMaximoActividad, tipoActividad, disertante, requiereNotebook);
 
             System.out.println();
             System.out.println(Utilidades.YELLOW + "¿Desea crear más actividades? S/N" + Utilidades.RESET);

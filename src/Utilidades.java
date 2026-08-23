@@ -25,14 +25,14 @@ public class Utilidades {
         EventoUniversitario evento1 = new EventoUniversitario(
                 UUID.randomUUID().toString(), "Hackathon UTN", 0, true);
         evento1.asignarSala(sala1);
-        evento1.crearActividad(1, "Desarrollo de Prototipo", 20);
-        evento1.crearActividad(2, "Charla de Cierre", 50);
+        evento1.crearActividad("Desarrollo de Prototipo", 20, "Taller", null, true);
+        evento1.crearActividad("Charla de Cierre", 50, "Charla", "Ing. Roberto Sosa", false);
 
         // Evento 2: pago, con una actividad
         EventoUniversitario evento2 = new EventoUniversitario(
                 UUID.randomUUID().toString(), "Jornada de Innovación", 500.0, false);
         evento2.asignarSala(sala2);
-        evento2.crearActividad(3, "Taller de Robótica", 15);
+        evento2.crearActividad("Taller de Robótica", 15, "Taller", null, true);
 
         eventos.add(evento1);
         eventos.add(evento2);
