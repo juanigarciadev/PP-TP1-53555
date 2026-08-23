@@ -8,8 +8,8 @@ Trabajo Práctico N°1 de la cátedra **Paradigmas de Programación** (UTN - FRM
 |---|---|---|
 | 1 | Clase `EventoUniversitario`: creación, copia y contador de instancias | ✅ Completo |
 | 2 | Relaciones entre `EventoUniversitario`, `Sala`, `Actividad`, `Estudiante` e `Inscripcion` | ✅ Completo |
-| 3 | Herencia y polimorfismo (`Actividad` abstracta, subclases `Charla` y `Taller`) | ⬜ Pendiente |
-| 4 | Mapa de memoria de ejecución | ⬜ Pendiente |
+| 3 | Herencia y polimorfismo (`Actividad` abstracta, subclases `Charla` y `Taller`) | ✅ Completo |
+| 4 | Mapa de memoria de ejecución | ✅ Completo |
 
 ## Cómo ejecutar
 
@@ -32,9 +32,11 @@ Cada módulo (excepto "Salir") tiene a su vez un submenú propio de **crear / mo
 ## Estructura del proyecto
 
 **Modelo:**
-- `EventoUniversitario` — evento con ID (UUID), título, costo base, condición de gratuidad, sala asignada y lista de actividades. Contador estático de instancias. Constructor de copia (copia también sala y actividades).
+- `EventoUniversitario` — evento con ID (UUID), título, costo base, condición de gratuidad, sala asignada y lista de actividades. Contador estático de instancias (`getCantidadEventos()`, no cuenta copias). Constructor de copia (copia también sala y actividades, compartiendo las mismas actividades que el original). `calcularCostoEstimado()` devuelve `0` si es gratuito, o `(costoBase + costo de cada actividad) * 1.21` en caso contrario. `mostrarDatos()` muestra el resumen completo del evento.
 - `Sala` — id y nombre. Se asigna al evento por agregación (existe independientemente del evento).
-- `Actividad` — id, título, cupo máximo y lista de inscripciones. Se crea siempre a través de `EventoUniversitario.crearActividad(...)` (composición).
+- `Actividad` — clase **abstracta**. id (autoincremental, asignado por un contador estático propio de la clase), título, cupo máximo y lista de inscripciones. Se crea siempre a través de `EventoUniversitario.crearActividad(...)` (composición). Declara `calcularCostoMateriales()` y `getTipo()` como métodos abstractos, y `mostrarIdentificacion()` como método `final` que los usa polimórficamente para mostrar el tipo real de la actividad.
+- `Charla` — subclase de `Actividad`. Agrega `disertante`. Es siempre gratuita (`calcularCostoMateriales()` devuelve `0`).
+- `Taller` — subclase de `Actividad`. Agrega `requiereNotebook`. Cuesta `$5000` si requiere notebook o `$2000` si no.
 - `Estudiante` — legajo y nombre.
 - `Inscripcion` — vincula un estudiante con una actividad, fecha (`LocalDate.now()`) y estado.
 
@@ -52,7 +54,15 @@ Cada módulo (excepto "Salir") tiene a su vez un submenú propio de **crear / mo
 **Punto de entrada:**
 - `App` — contiene el `main`, declara las listas compartidas (`estudiantes`, `eventos`, `salas`) y despacha al módulo correspondiente según la opción elegida.
 
-## Próximos pasos
+## Ejercicio 4 — Mapa de memoria de ejecución
 
-- Ejercicio 3: convertir `Actividad` en clase abstracta con subclases `Charla` y `Taller`, agregar `calcularCostoEstimado()` polimórfico en `EventoUniversitario` y actualizar `crearActividad` para recibir el tipo de actividad.
-- Ejercicio 4: mapa de memoria de ejecución del programa del Ejercicio 3.
+A partir del programa del Ejercicio 3, se plantea el siguiente escenario dentro de `main()`:
+
+- Se crean 3 estudiantes.
+- Se crea 1 evento y 1 sala, y se le asigna la sala al evento.
+- Se crean 2 actividades para el evento: una `Charla` y un `Taller`.
+- Se inscriben 2 estudiantes en la `Charla` y 2 estudiantes en el `Taller` (con un estudiante en común entre ambas).
+
+El siguiente mapa de memoria representa los objetos creados en el heap durante esa ejecución y cómo quedan vinculados entre sí, diferenciando la pila (variables locales de `main`) del heap (objetos), y distinguiendo con notación UML la composición (evento–actividades, actividad–inscripciones), la agregación (evento–sala), la herencia (`Charla`/`Taller` → `Actividad`) y las asociaciones simples (referencias entre objetos). La pila se dibuja respetando el orden LIFO real: la última variable en apilarse (`sala`) queda en el tope, y la primera (`estudiante1`) en la base.
+
+![Mapa de memoria de ejecución — Ejercicio 4](docs/ejercicio4-mapa-memoria.svg)
