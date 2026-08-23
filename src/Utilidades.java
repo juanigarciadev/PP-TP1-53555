@@ -48,7 +48,7 @@ public class Utilidades {
         System.out.println("\n--- Lista de estudiantes ---");
 
         if (estudiantes.isEmpty()) {
-            System.out.println("No hay estudiantes registrados.");
+            System.out.println(RED + "No hay estudiantes registrados." + RESET);
             return;
         }
 

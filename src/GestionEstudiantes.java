@@ -26,7 +26,7 @@ public class GestionEstudiantes {
                     System.out.println("Volviendo al menú principal...");
                     break;
                 default:
-                    System.out.println("Opción no válida.");
+                    System.out.println(Utilidades.RED + "Opción no válida." + Utilidades.RESET);
             }
 
             if (!opcion.equals("3")) {

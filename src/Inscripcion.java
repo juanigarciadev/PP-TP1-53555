@@ -10,4 +10,10 @@ public class Inscripcion {
         this.fecha = fecha;
         this.estado = estado;
     }
+
+    @Override
+    public String toString() {
+        return "  * " + estudiante.getNombre() + " (Legajo: " + estudiante.getLegajo() +
+                ") - Fecha: " + fecha + " - Estado: " + estado;
+    }
 }

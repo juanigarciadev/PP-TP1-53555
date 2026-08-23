@@ -1,4 +1,3 @@
-import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +8,7 @@ public class Actividad {
     private int id;
     private String titulo;
     private int cupoMaximo;
-    List<Inscripcion> inscripciones;
+    private List<Inscripcion> inscripciones;
 
     public Actividad(int id, String titulo, int cupoMaximo) {
         this.id = id;

@@ -26,7 +26,7 @@ public class GestionSalas {
                     System.out.println("Volviendo al menú principal...");
                     break;
                 default:
-                    System.out.println("Opción no válida.");
+                    System.out.println(Utilidades.RED + "Opción no válida." + Utilidades.RESET);
             }
 
             if (!opcion.equals("3")) {
@@ -66,7 +66,7 @@ public class GestionSalas {
         System.out.println(Utilidades.BLUE + "\n--- Lista de salas ---" + Utilidades.RESET);
 
         if (salas.isEmpty()) {
-            System.out.println("No hay salas creadas.");
+            System.out.println(Utilidades.RED + "No hay salas creadas." + Utilidades.RESET);
             return;
         }
 

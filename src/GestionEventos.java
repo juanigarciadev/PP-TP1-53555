@@ -27,7 +27,7 @@ public class GestionEventos {
                     System.out.println("Volviendo al menú principal...");
                     break;
                 default:
-                    System.out.println("Opción no válida.");
+                    System.out.println(Utilidades.RED + "Opción no válida." + Utilidades.RESET);
             }
 
             if (!opcion.equals("3")) {
@@ -98,33 +98,30 @@ public class GestionEventos {
 
         System.out.println(Utilidades.GREEN + "======================");
         System.out.println("Evento creado con éxito:");
-        System.out.println(evento);
-        System.out.println("Actividades: ");
-        evento.mostrarActividades();
+        evento.mostrarDatos();
         System.out.println(Utilidades.RESET);
 
         System.out.println(Utilidades.YELLOW + "Creando copia del evento...");
         EventoUniversitario copiaEvento = new EventoUniversitario(evento);
         System.out.println("Datos de la copia:");
-        System.out.println(copiaEvento);
+        copiaEvento.mostrarDatos();
 
         System.out.println("======================" + Utilidades.RESET);
-        System.out.println("Cantidad de eventos: " + EventoUniversitario.getContadorEventos());
+        System.out.println("Cantidad de eventos: " + EventoUniversitario.getCantidadEventos());
     }
 
     private void mostrarEventos(List<EventoUniversitario> eventos) {
         System.out.println(Utilidades.BLUE + "\n--- Lista de eventos ---" + Utilidades.RESET);
 
         if (eventos.isEmpty()) {
-            System.out.println("No hay eventos registrados.");
+            System.out.println(Utilidades.RED + "No hay eventos registrados." + Utilidades.RESET);
             return;
         } else {
-            System.out.println("Cantidad de eventos creados: " + EventoUniversitario.getContadorEventos());
+            System.out.println("Cantidad de eventos creados: " + EventoUniversitario.getCantidadEventos());
         }
 
         for (EventoUniversitario evento : eventos) {
-            System.out.println(evento);
-            evento.mostrarActividades();
+            evento.mostrarDatos();
             System.out.println(Utilidades.BLUE + "----------------------" + Utilidades.RESET);
         }
     }
@@ -137,7 +134,7 @@ public class GestionEventos {
         }
 
         System.out.println();
-        System.out.println("Asigne una sala: " + Utilidades.RESET);
+        System.out.println(Utilidades.BLUE + "Asigne una sala: " + Utilidades.RESET);
         for (Sala sala : salas) {
             System.out.println("- " + sala);
         }
@@ -158,7 +155,7 @@ public class GestionEventos {
             }
 
             if (salaSeleccionada == null) {
-                System.out.println("ID de sala inválido. Intente nuevamente.");
+                System.out.println(Utilidades.RED + "ID de sala inválido. Intente nuevamente." + Utilidades.RESET);
             }
         } while (salaSeleccionada == null);
 

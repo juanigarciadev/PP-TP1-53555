@@ -5,11 +5,11 @@ public class GestionInscripcion {
 
     public void iniciar(Scanner teclado, List<EventoUniversitario> eventos, List<Estudiante> estudiantes) {
         if (eventos.isEmpty()) {
-            System.out.println("No hay eventos registrados. Cree uno primero.");
+            System.out.println(Utilidades.RED + "No hay eventos registrados. Cree uno primero." + Utilidades.RESET);
             return;
         }
         if (estudiantes.isEmpty()) {
-            System.out.println("No hay estudiantes registrados. Cree uno primero.");
+            System.out.println(Utilidades.RED + "No hay estudiantes registrados. Cree uno primero." + Utilidades.RESET);
             return;
         }
 
@@ -35,7 +35,7 @@ public class GestionInscripcion {
 
             List<Actividad> actividades = evento.getActividades();
             if (actividades.isEmpty()) {
-                System.out.println("Este evento no tiene actividades cargadas.");
+                System.out.println(Utilidades.RED + "Este evento no tiene actividades cargadas." + Utilidades.RESET);
                 return;
             }
 
@@ -68,13 +68,15 @@ public class GestionInscripcion {
                 }
 
                 if (estudianteAInscribir == null) {
-                    System.out.println("No se encontró un estudiante con ese legajo. Intente nuevamente.");
+                    System.out.println(Utilidades.RED + "No se encontró un estudiante con ese legajo. Intente nuevamente." + Utilidades.RESET);
                 }
             } while (estudianteAInscribir == null);
 
             actividad.inscribir(estudianteAInscribir);
             System.out.println(Utilidades.GREEN + "======================");
             System.out.println(estudianteAInscribir.getNombre() + " inscripto con éxito en '" + actividad + "'.");
+            System.out.println("Inscriptos actuales:");
+            actividad.mostrarInscripciones();
             System.out.println("======================" + Utilidades.RESET);
 
             System.out.println();

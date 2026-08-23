@@ -9,14 +9,14 @@ public class EventoUniversitario {
     private Sala sala;
     private List<Actividad> actividades;
 
-    private static int contadorEventos = 0;
+    private static int cantidadEventos = 0;
 
     public EventoUniversitario(String Id, String titulo, double costoBase, boolean gratuito){
         this.Id = Id;
         this.titulo = titulo;
         this.costoBase = costoBase;
         this.gratuito = gratuito;
-        contadorEventos++;
+        cantidadEventos++;
         this.actividades = new ArrayList<>();
     }
 
@@ -26,8 +26,12 @@ public class EventoUniversitario {
         this.sala = copiaEvento.sala;
     }
 
-    public static int getContadorEventos() {
-        return contadorEventos;
+    public static int getCantidadEventos() {
+        return cantidadEventos;
+    }
+
+    public double calcularCostoEstimado() {
+        return gratuito ? 0 : costoBase;
     }
 
     public void asignarSala(Sala sala) {
@@ -42,6 +46,15 @@ public class EventoUniversitario {
     public void mostrarActividades() {
         for (Actividad actividad: actividades) {
             System.out.println(actividad);
+        }
+    }
+
+    public void mostrarDatos() {
+        System.out.println(this);
+        System.out.println("Costo estimado: $" + calcularCostoEstimado());
+        if (!actividades.isEmpty()) {
+            System.out.println("Actividades:");
+            mostrarActividades();
         }
     }
 
