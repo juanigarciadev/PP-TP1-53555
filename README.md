@@ -11,6 +11,30 @@ Trabajo Práctico N°1 de la cátedra **Paradigmas de Programación** (UTN - FRM
 | 3 | Herencia y polimorfismo (`Actividad` abstracta, subclases `Charla` y `Taller`) | ✅ Completo |
 | 4 | Mapa de memoria de ejecución | ✅ Completo |
 
+## Cómo clonar
+
+> ⚠️ Este repositorio va a alojar **todos los TPs de la cátedra en un mismo repo, cada uno en su propia branch**. Cloná siempre indicando la branch correspondiente al TP que necesitás — si clonás sin especificarla, vas a caer en la branch por defecto (`main`), que puede no tener este trabajo práctico.
+
+Branch de este TP: [`PP-TP1-53555`](https://github.com/juanigarciadev/PP-TPs/tree/PP-TP1-53555)
+
+Clonar directamente sobre esa branch (un solo comando):
+
+**Linux / macOS / Git Bash:**
+```bash
+git clone -b PP-TP1-53555 https://github.com/juanigarciadev/PP-TPs.git && cd PP-TPs && git checkout PP-TP1-53555
+```
+
+**Windows (PowerShell):** `&&` no es válido como separador en PowerShell 5.1, se usa `;`
+```powershell
+git clone -b PP-TP1-53555 https://github.com/juanigarciadev/PP-TPs.git; cd PP-TPs; git checkout PP-TP1-53555
+```
+
+Si ya clonaste el repositorio sin indicar branch, movete a esta desde la carpeta del proyecto:
+
+```bash
+git checkout PP-TP1-53555
+```
+
 ## Cómo ejecutar
 
 Abrir el proyecto en IntelliJ IDEA y correr `App.java` (contiene el `main`). Se recomienda ejecutar desde una terminal real (no la consola integrada del IDE) para que el limpiado de pantalla se aproveche mejor durante la navegación por los menús.
