@@ -38,6 +38,10 @@ Al iniciar, el sistema precarga datos de prueba (`Utilidades.poblarSistema`): 3 
 
 Cada módulo (excepto "Salir") tiene a su vez un submenú propio de **crear / mostrar / volver**, salvo el de inscripción, que guía al usuario paso a paso: elegir evento → elegir actividad → elegir estudiante por legajo.
 
+### Captura de una ejecución
+
+![Captura de consola](docs/captura-consola.png)
+
 ## Estructura del proyecto
 
 **Modelo:**
